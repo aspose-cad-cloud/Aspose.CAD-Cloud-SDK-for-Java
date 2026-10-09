@@ -2149,7 +2149,8 @@ public class CadApi
           formParams.put("drawingData", this.apiInvoker.toFileInfo(request.drawingData, "drawingData"));
       }if (request.exportOptions != null) 
       {
-          formParams.put("exportOptions", request.exportOptions);
+          byte[] optionsBytes = request.exportOptions.getBytes(StandardCharsets.US_ASCII);
+          formParams.put("exportOptions", this.apiInvoker.toFileInfo(optionsBytes, "exportOptions"));
       }
       byte[] response = this.apiInvoker.invokeApi(
           resourcePath, 
